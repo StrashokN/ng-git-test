@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 mat-dialog-title>{{data.name}}</h1>
+  <div mat-dialog-content>
+    Description:
+    <p>{{data.description}}</p>
+  </div>
+  <div mat-dialog-content>
+    Language:
+    <p>{{data.language}}</p>
+  </div>
+  <div mat-dialog-content>
+    Has Issues:
+    <p>
+      <mat-icon *ngIf="data.has_issues">check</mat-icon>
+      <mat-icon *ngIf="!data.has_issues">clear</mat-icon>
+    </p>
+  </div>
+  <div>
+    GitHub Link:
+    <p><a mat-button href="{{data.html_url}}" target="_blank">{{data.html_url}}</a></p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </div>
+</div>

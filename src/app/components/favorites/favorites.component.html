@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <mat-icon (click)="goUsersPage()">keyboard_backspace</mat-icon>
+    <span>Favorites Repositories</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ul *ngIf="favoriteRepositories.length">
+  <li *ngFor="let repository of favoriteRepositories" (click)="openModalRepo(repository, $event)">
+    <div class="name">
+      {{repository.name}}
+    </div>
+    <div class="description">
+      {{repository.description}}
+    </div>
+    <div class="delete">
+      <mat-icon class="select" (click)="removeRepository(repository)">delete</mat-icon>
+    </div>
+</li>
+</ul>
+<p *ngIf="!favoriteRepositories.length" class="empty">Favorites Repositories Are Empty</p>

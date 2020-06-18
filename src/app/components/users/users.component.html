@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>All Users</span>
+    <button mat-raised-button color="primary" (click)="goFavoritesPage()">Favorites Repositories</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="wrapper">
+  <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+  <input placeholder="Search GitHub User" [formControl]="searchValueControl" [ngClass]="{'error': errorMessage}">
+</div>
+
+<ul *ngIf="users$ | async">
+  <li *ngFor="let user of users$ | async" (click)="goRepoPage(user.login)">
+    <div class="avatar">
+      <img [src]="user.avatar_url" alt="avatar">
+    </div>
+    <div class="login">
+      {{user.login | titlecase}}
+    </div>
+  </li>
+</ul>
+<mat-spinner *ngIf="!(users$ | async)"></mat-spinner>

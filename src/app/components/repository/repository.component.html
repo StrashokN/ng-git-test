@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <mat-icon (click)="goUsersPage()">keyboard_backspace</mat-icon>
+    <span>{{login + ' Repository' | titlecase}}</span>
+    <button mat-raised-button color="primary" (click)="goFavoritesPage()">Favorites Repositories</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ul *ngIf="userRepo$ | async">
+  <li *ngFor="let repository of userRepo$ | async" (click)="openModalRepo(repository, $event)">
+    <div class="name">
+      {{repository.name}}
+    </div>
+    <div class="description">
+      {{repository.description}}
+    </div>
+    <div class="star">
+      <mat-icon [ngClass]="{'select': showFavoriteRepository(repository)}">stars</mat-icon>
+    </div>
+  </li>
+</ul>
+<mat-spinner *ngIf="!(userRepo$ | async)"></mat-spinner>
+
